@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
-  cacheComponents: true,
-  partialPrefetching: true,
+  // HTML is rendered per request so Next.js can apply the CSP nonce.
+  cacheComponents: false,
   turbopack: {
     rules: {
       "*.css": {
