@@ -10,6 +10,8 @@ import {
   openApiPath,
 } from "@/lib/api/v1/categories";
 
+import { PlacesSection } from "./places-section";
+
 export const metadata: Metadata = { title: "API v1 documentation" };
 
 const responseExample = JSON.stringify(categoriesResponse, null, 2);
@@ -19,6 +21,7 @@ export default function DocsPage() {
     <main id="main" className="frame docs">
       <nav className="docs-nav" aria-label="On this page">
         <a href="#quickstart">Quickstart</a>
+        <a href="#places">Places</a>
         <a href="#categories">Categories</a>
         <a href="#http">HTTP behavior</a>
         <a href={openApiPath}>OpenAPI JSON</a>
@@ -27,20 +30,21 @@ export default function DocsPage() {
         <header>
           <p className="eyebrow">Developer documentation</p>
           <h1>API v1</h1>
-          <p className="lede">Find the category keys used to organize tourism data in the Atlas.</p>
+          <p className="lede">Browse tourism places from OpenStreetMap and find the category keys used to organize them.</p>
           <p>Production base URL <code className="inline-code">{apiBaseUrl}</code></p>
         </header>
 
         <section id="quickstart">
           <h2>Quickstart</h2>
-          <p>Run the request below or <a href={categoriesPath}>open the response in your browser</a>. The API is free and requires no account or API key.</p>
-          <CodeBlock label="cURL request" code={categoriesRequest} />
-          <p>For a local server on the default port, run this request.</p>
-          <CodeBlock label="Local cURL request" code={localCategoriesRequest} />
+          <p>Start with <a href="#places">the places endpoint</a> or <a href={categoriesPath}>open the category directory</a>. The API is free and requires no account or API key.</p>
         </section>
+        <PlacesSection />
         <section id="categories">
           <h2>List categories</h2>
           <p className="endpoint"><span className="method">GET</span> <code>/categories</code></p>
+          <CodeBlock label="cURL request" code={categoriesRequest} />
+          <p>For a local server on the default port, run this request.</p>
+          <CodeBlock label="Local cURL request" code={localCategoriesRequest} />
           <p>The response contains a <code>data</code> array. Each item has a stable string <code>key</code> and a human-readable <code>label</code>. Category vocabulary describes how records can be grouped. Record availability depends on the published dataset.</p>
           <CodeBlock label="Example JSON response" code={responseExample} />
         </section>

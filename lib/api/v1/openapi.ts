@@ -1,7 +1,9 @@
 import { apiBaseUrl, categories, categoriesResponse } from "./categories";
 
+import { placeSchemas, placesOperation } from "./places-openapi";
+
 const requestIdHeader = {
-  "X-Request-Id": { description: "Unique response identifier.", schema: { type: "string", format: "uuid" } },
+  "X-Request-Id": { $ref: "#/components/headers/RequestId" },
 };
 
 export const openApi = {
@@ -9,11 +11,12 @@ export const openApi = {
   info: {
     title: "Nepal Tourism Atlas API",
     version: "1",
-    description: "A free, read-only API for Nepal tourism data. This release exposes the v1 category vocabulary.",
+    description: "A free, read-only API for Nepal tourism data. Browse published places and discover the v1 category vocabulary.",
   },
   servers: [{ url: apiBaseUrl }],
   externalDocs: { description: "Developer documentation", url: "https://atlas.cloveit.com.np/docs/v1" },
   paths: {
+    "/places": { get: placesOperation },
     "/categories": {
       get: {
         operationId: "listCategories",
@@ -48,7 +51,11 @@ export const openApi = {
     },
   },
   components: {
+    headers: {
+      RequestId: { description: "Request identifier.", schema: { type: "string", format: "uuid" } },
+    },
     schemas: {
+      ...placeSchemas,
       CategoriesResponse: {
         type: "object",
         required: ["data"],

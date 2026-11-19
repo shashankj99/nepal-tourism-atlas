@@ -1,7 +1,7 @@
 import { readOnlyJson } from "@/lib/api/v1/http";
 import { openApi } from "@/lib/api/v1/openapi";
 
-const respond = readOnlyJson(openApi, "public, max-age=300");
+const respond = readOnlyJson(() => openApi, "public, max-age=300");
 
 export {
   respond as GET,

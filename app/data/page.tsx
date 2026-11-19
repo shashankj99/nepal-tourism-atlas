@@ -14,8 +14,9 @@ export default function DataPage() {
           <h2>Source and coverage</h2>
           <p>
             OpenStreetMap coverage depends on what contributors have mapped and what
-            the importer has collected. The category directory describes the v1 vocabulary.
-            Coverage and record counts depend on the reviewed public dataset.
+            the importer has collected. The v1 API uses records from the Geofabrik Nepal
+            snapshot and approved regional OpenStreetMap imports. Localities can describe
+            an import area. Trail records describe mapped trails and omit route geometry.
           </p>
         </section>
         <section>

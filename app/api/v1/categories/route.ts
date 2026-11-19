@@ -1,7 +1,7 @@
 import { categoriesResponse } from "@/lib/api/v1/categories";
 import { readOnlyJson } from "@/lib/api/v1/http";
 
-const respond = readOnlyJson(categoriesResponse);
+const respond = readOnlyJson(() => categoriesResponse);
 
 export {
   respond as GET,

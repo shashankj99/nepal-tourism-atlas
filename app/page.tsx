@@ -1,15 +1,11 @@
 import Link from "next/link";
 import { CodeBlock } from "@/components/code-block";
-import {
-  categories,
-  categoriesPath,
-  categoriesRequest,
-  localCategoriesRequest,
-} from "@/lib/api/v1/categories";
+import { categories, categoriesPath } from "@/lib/api/v1/categories";
+import { localPlacesRequest, placesPath, placesRequest } from "@/lib/api/v1/places";
 
 const quickstartRequest = process.env.NODE_ENV === "development"
-  ? localCategoriesRequest
-  : categoriesRequest;
+  ? localPlacesRequest
+  : placesRequest;
 
 export default function Home() {
   return (
@@ -19,12 +15,12 @@ export default function Home() {
           <p className="eyebrow">Open data for developers</p>
           <h1 id="home-title">Nepal tourism data for your next project.</h1>
           <p className="lede">
-            Explore how the Atlas groups tourism data from OpenStreetMap.
-            The free v1 API starts with a directory of category keys.
+            Find destinations, stays, restaurants, heritage sites, and more in
+            a free API powered by OpenStreetMap data.
           </p>
           <div className="actions">
             <Link className="button button-primary" href="/docs/v1">Read the docs</Link>
-            <a className="button button-secondary" href={categoriesPath}>View API response</a>
+            <a className="button button-secondary" href={`${placesPath}?limit=3`}>View API response</a>
           </div>
         </div>
         <div className="directory">
@@ -46,7 +42,7 @@ export default function Home() {
         <div className="frame quickstart-inner">
           <div>
             <h2 id="quickstart-title">Make your first request</h2>
-            <p>Fetch the full category directory with a single request. No API key required.</p>
+            <p>Fetch three places with a single request. No API key required.</p>
           </div>
           <CodeBlock label="cURL request" code={quickstartRequest} />
         </div>
